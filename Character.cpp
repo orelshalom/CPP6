@@ -26,6 +26,10 @@ void Character::operator= (char c){
     ch = c;
 }
 
+bool operator== (const Character c1, const char c2){
+    return c1.ch == c2;
+}
+
 Character::operator char(){
     return ch;
 }

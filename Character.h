@@ -11,6 +11,7 @@ class Character {
    	
     char ch;
     friend ostream& operator<< (ostream& os, const Character& chara);
+    friend bool operator== (const Character c1, const char c2);
     Character(char c);
     Character();
     void operator= (const Character chara);
