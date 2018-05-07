@@ -9,7 +9,7 @@ IllegalCoordinateException::IllegalCoordinateException(const Insert& in){
 }
 
 IllegalCoordinateException::~IllegalCoordinateException(){
-    delete pair;
+    delete ill;
 }
 
 string IllegalCoordinateException::theCoordinate() const{
