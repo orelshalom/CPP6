@@ -20,7 +20,7 @@ void Character::operator= (const Character chara){
 }
 
 void Character::operator= (char c){
-    if(c != 'X' && c != 'O'){
+    if(c != 'X' && c != 'O' && c != '.'){
         throw IllegalCharException(c);
     }
     ch = c;
