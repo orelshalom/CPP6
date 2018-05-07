@@ -12,6 +12,7 @@ class IllegalCoordinateException : public exception {
     public:
 
     IllegalCoordinateException(const Insert& in);
+    ~IllegalCoordinateException();
     string theCoordinate() const;
 
 };
