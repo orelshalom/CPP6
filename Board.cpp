@@ -11,10 +11,14 @@ Board::Board (const Board& b){
         matrix[i] = new Character [size];   
 }
 
-Board::~Board(){
+void Board::freeBoard(){
     for(int i = 0; i < size; ++i)
-        delete matrix[i];
-    delete matrix;
+        delete[] matrix[i];
+    delete[] matrix    
+}
+
+Board::~Board(){
+    freeBoard();
 }
 
 ostream& operator<< (ostream& os, const Board& b){

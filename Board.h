@@ -21,6 +21,7 @@ class Board {
             matrix[i] = new Character [size];   
     }
     Board (const Board& b);
+    freeBoard();
     ~Board();
 
     Character& operator[] (Insert in);
