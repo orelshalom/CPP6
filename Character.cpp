@@ -25,3 +25,7 @@ void Character::operator= (char c){
     }
     ch = c;
 }
+
+Character::operator char(){
+    return ch;
+}

@@ -3,11 +3,18 @@
 using namespace std;
 
 
+
 Board::Board (const Board& b){
     size = b.size;
     matrix = new Character * [size];
     for(int i = 0; i < size; ++i)
-        matrix[i] = new Character [size];
+        matrix[i] = new Character [size];   
+}
+
+Board::~Board(){
+    for(int i = 0; i < size; ++i)
+        delete matrix[i];
+    delete matrix;
 }
 
 ostream& operator<< (ostream& os, const Board& b){

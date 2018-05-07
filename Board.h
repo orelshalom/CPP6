@@ -15,14 +15,15 @@ class Board {
     Character ** matrix;
     int size; 
 
-    Board (const Board& b);
     Board (int extent) : size(extent){
         matrix = new Character * [size];
         for(int i = 0; i < size; ++i)
-            matrix[i] = new Character [size];
-	}
+            matrix[i] = new Character [size];   
+    }
+    Board (const Board& b);
+    ~Board();
 
     Character& operator[] (Insert in);
-    void operator= (const Board& b);
+    void operator= (const Board&);
 	void operator= (char c);
 };

@@ -15,5 +15,5 @@ class Character {
     Character();
     void operator= (const Character chara);
 	void operator= (char c);
-
+    operator char();
 };

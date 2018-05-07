@@ -2,7 +2,6 @@
 #define INSERT_H
 
 #pragma once
-using namespace std;
 
 
 class Insert {
