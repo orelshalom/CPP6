@@ -36,7 +36,7 @@ Character& Board::operator[] (Insert in){
 }
 
 void Board::operator= (const Board& b){
-    ~Board();
+    this->~Board();
     size = b.size;
     matrix = new Character * [size];
     for(int i = 0; i < size; ++i){
