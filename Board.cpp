@@ -3,7 +3,6 @@
 using namespace std;
 
 
-
 Board::Board (const Board& b){
     size = b.size;
     matrix = new Character * [size];
@@ -37,10 +36,13 @@ Character& Board::operator[] (Insert in){
 }
 
 void Board::operator= (const Board& b){
+    ~Board();
+    size = b.size;
+    matrix = new Character * [size];
     for(int i = 0; i < size; ++i){
-        for(int j = 0; j < size; ++j){
+        matrix[i] = new Character [size]; 
+        for(int j = 0; j < size; ++j)
             matrix[i][j] = b.matrix[i][j];
-        }
     }
 }
 
