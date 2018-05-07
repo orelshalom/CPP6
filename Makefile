@@ -1,10 +1,8 @@
 CXX=clang++-5.0
-CXXFLAGS=-std=c++17 -Wall -Werror -Wvla 
+CXXFLAGS=-std=c++17  
  
 all: Board.o Character.o Insert.o IllegalCharException.o IllegalCoordinateException.o
 
-# main.o: main.cpp Board.h
-# 	$(CXX) $(CXXFLAGS) -c main.cpp -o main.o
 
 Board.o: Board.cpp Board.h
 	$(CXX) $(CXXFLAGS) -c Board.cpp -o Board.o
