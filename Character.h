@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Insert.h"
+#include "Coordinate.h"
 #include "IllegalCharException.h"
 using namespace std;
 

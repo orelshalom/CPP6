@@ -4,8 +4,8 @@
 using namespace std;
 
 
-IllegalCoordinateException::IllegalCoordinateException(const Insert& in){
-    ill = new Insert(in);
+IllegalCoordinateException::IllegalCoordinateException(const Coordinate& coor){
+    ill = new Coordinate(coor);
 }
 
 IllegalCoordinateException::~IllegalCoordinateException(){

@@ -13,17 +13,19 @@ class Board {
     public:
 
     Character ** matrix;
-    int size; 
+    uint boardSize;
 
-    Board (int extent) : size(extent){
-        matrix = new Character * [size];
-        for(int i = 0; i < size; ++i)
-            matrix[i] = new Character [size];   
+    Board (uint extent) : boardSize(extent){
+        matrix = new Character * [boardSize];
+        for(int i = 0; i < boardSize; ++i)
+            matrix[i] = new Character [boardSize];   
     }
     Board (const Board& b);
     ~Board();
 
-    Character& operator[] (Insert in);
+    Character& operator[] (Coordinate coor) const;
     void operator= (const Board&);
 	void operator= (char c);
+    const uint size() const; 
+
 };

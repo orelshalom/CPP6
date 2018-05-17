@@ -2,16 +2,16 @@
 #include <iostream>
 #include <exception>
 #include <sstream>
-#include "Insert.h"
+#include "Coordinate.h"
 using namespace std;
 
 class IllegalCoordinateException : public exception {
 
-    Insert * ill;
+    Coordinate * ill;
 
     public:
 
-    IllegalCoordinateException(const Insert& in);
+    IllegalCoordinateException(const Coordinate& coor);
     ~IllegalCoordinateException();
     string theCoordinate() const;
 
