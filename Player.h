@@ -7,11 +7,12 @@ class Player {
     
     public:
 
-    Character myChar;
+    char myChar;
 
-    virtual const string name() const;
-    virtual const Coordinate play(const Board& board);
+    virtual const string name() const { return "Some Player"; }
+    virtual const Coordinate play(const Board& board) { return {0,0}; }
     
-    char getChar(){ return myChar.ch; }
+    char getChar() const;
+    void setChar(char);
 
 };

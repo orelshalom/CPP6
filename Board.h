@@ -25,7 +25,7 @@ class Board {
 
     Character& operator[] (Coordinate coor) const;
     void operator= (const Board&);
-	void operator= (char c);
+	void operator= (char c) const;
     const uint size() const; 
 
 };

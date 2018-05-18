@@ -5,104 +5,67 @@ using namespace std;
 void TicTacToe::play(Player& xp, Player& op){
     xp.myChar = 'X';
     op.myChar = 'O';
-    p1 = xp;
-    p2 = op;
-    int winner = 0;
-    int turn = 1;
-    int first = 0;
-
-	while (winner == 0){
-		if(turn == 1){
-            if((isWin(op.myChar.ch) == 1) || (xp.play(this->b).row == 0 && xp.play(this->b).column == 0 && first != 0)){
-                winner = 2;
-                break;
-            }
-            else{
-                b[xp.play(this->b)] = xp.myChar;
-            }
-			turn = 2;
-            first = 1;
-		}
-		else{ 
-			if(turn == 2){
-                if((isWin(xp.myChar.ch) == 1) || (op.play(this->b).row == 0 && op.play(this->b).column == 0 && first != 1)){
-                    first = 1;
-                    winner = 1;
-                    break;
-                }
-                else{
-                    b[op.play(this->b)] = op.myChar;
-                }
-				turn = 1;
-                first = 2;
-			}
-		}
+    int num = size * size;
+    int count = 0;
+    
+	while (count < num){
+        doTurn(xp.myChar, xp, op);
+        count++;
+        if(count < num) doTurn(op.myChar, xp, op);
+        count++;
 	}
-    temp = b;
+    if(won != &op || won != &xp) won = &op;
 }
 
-Board& TicTacToe::board(){
-    return temp;
+Board TicTacToe::board() const{
+    return b;
 }
 
-Player& TicTacToe::winner(){
-    int Xcount = 0, Ocount = 0;
-    for(uint i = 0; i < size; i++){
-        for(uint j = 0; j < size; j++){
-            if(b[{i,j}] == p1.myChar) Xcount++;
-            else Ocount++;
-        }
-    }
-    if(Xcount == Ocount && Xcount == size/2 && Ocount == size/2 ) return p2; 
-    else{
-        if(isWin('X') == 1) return p1;
-        else return p2;
-    }
+Player& TicTacToe::winner() const{
+    b = '.';
+    return *won;
 }
 
-int TicTacToe::goLine(char player){
+bool TicTacToe::goLine(char player) const{
     int count = 0;
 	for(uint i = 0 ; i < size; i++){
 		for(uint j = 0; j < size; j++){
             Coordinate c{i,j};
-			if (b[c] == player){
-				count++;
-			}
-			if(count == size){
-				return 1;
-			}
-            if(j == size-1){
+			if(b[c] == player) count++;
+            else {
                 count = 0;
+                break;
             }
+			if(count == size){
+				return true;
+			}
 		}
 	}
-	return 0;
+	return false;
 
 }
 
-int TicTacToe::goColumn(char player){
+bool TicTacToe::goColumn(char player) const{
     int count = 0;
 	for(uint i = 0 ; i < size; i++){
 		for(uint j = 0; j < size; j++){ 
 			Coordinate c{j,i};
-            if (b[c] == player){
-				count++;
-			}
-			if(count == size){
-				return 1;
-			}
-            if(j == size-1){
+            if(b[c] == player) count++;
+            else {
                 count = 0;
+                break;
             }
+            if(count == size){
+				return true;
+			}
 		}
 	}
-	return 0;
+	return false;
 }
 
-int TicTacToe::diagonal(char player){
+bool TicTacToe::diagonal(char player) const{
     int count = 0;
     uint i = 0, j = 0;
-    int t;
     Coordinate c{i,j};
     
     if(b[c] == player){
@@ -112,14 +75,12 @@ int TicTacToe::diagonal(char player){
             i++;
             j++;
         }
-        if(count == size){
-            return 1;
-        }
-        count = 0;
+        if(count == size) return true;
 	}
-
+    
+    count = 0;
     j = size-1;
-    t = j;
+    int t = size-1;
     i = 0;
     Coordinate d{i,j};
 
@@ -130,16 +91,27 @@ int TicTacToe::diagonal(char player){
             i++;
             j++;
         }
-        if(count == size){
-            return 1;
-        }
+        if(count == size) return true;
 	}
-	return 0;
+	return false;
 }
 
-int TicTacToe::isWin(const char c){
-    if(goLine(c) == 1 || goColumn(c) == 1 || diagonal(c) == 1){
-        return 1;
+bool TicTacToe::isWin(const char c) const {
+    if(goLine(c) || goColumn(c) || diagonal(c)){
+        return true;
     }
-    return 0;
+    return false;
+}
+
+void TicTacToe::doTurn(char c, Player& xp, Player& op){
+    try {
+        Coordinate place;
+        c == 'X' ? place = xp.play(b) : place = op.play(b);
+        if (b[place] != '.') throw string("Illegal Player!");
+        b[place] = c;
+        if(isWin(c)) c == 'X' ? won = &xp : won = &op;
+    }
+    catch (...){
+        c == 'X' ? won = &op : won = &xp;
+    }
 }

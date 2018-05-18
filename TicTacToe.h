@@ -6,22 +6,23 @@ class TicTacToe {
 
     public:
 
-    Board b {0};
-    Board temp{0};
     uint size;
-    Player p1, p2;
+    Board b{0};
+    Player * won;
 
     TicTacToe (uint size){
-        b.boardSize = size;
-        temp.boardSize = size;
+        Board temp {size};
+        b = temp;
     }
 
     void play(Player& xp, Player& op);
-    Board& board();
-    Player& winner();
-    int goLine(char);
-    int goColumn(char);
-    int diagonal(char);
-    int isWin(const char);
+    Board board()const;
+    Player& winner() const;
 
+
+    bool goLine(char) const;
+    bool goColumn(char) const;
+    bool diagonal(char) const;
+    bool isWin(const char) const;
+    void doTurn(char, Player& xp, Player& op);
 };

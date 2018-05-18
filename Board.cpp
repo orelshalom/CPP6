@@ -46,7 +46,7 @@ void Board::operator= (const Board& b){
     }
 }
 
-void Board::operator= (char c){
+void Board::operator= (char c) const{
     if(c == '.'){
         for(uint i = 0; i < boardSize; ++i){
             for(uint j = 0; j < boardSize; ++j)
