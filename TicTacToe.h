@@ -10,14 +10,15 @@ class TicTacToe {
     Board b{0};
     Player * won;
 
-    TicTacToe (uint size){
-        Board temp {size};
+    TicTacToe (uint num){
+        Board temp {num};
+        size = num;
         b = temp;
     }
 
     void play(Player& xp, Player& op);
-    Board board()const;
-    Player& winner() const;
+    const Board board() const;
+    const Player& winner() const;
 
 
     bool goLine(char) const;

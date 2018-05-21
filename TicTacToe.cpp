@@ -10,26 +10,28 @@ void TicTacToe::play(Player& xp, Player& op){
     
 	while (count < num){
         makingMove(xp.myChar, xp, op);
-        if(isWin('X')){
+        if(isWin('X') || won == &xp){
             won = &xp;
             return;
         }
+        if(won == &op) return;
         count++;
-        if(count < num) makingMove(op.myChar, xp, op);
-        if(isWin('O')){
+        if(won != &xp && count < num) makingMove(op.myChar, xp, op);
+        if(isWin('O') || won == &op){
             won = &op;
             return;
         }
+        if(won == &xp) return;
         count++;
 	}
     if(won != &op || won != &xp) won = &op;
 }
 
-Board TicTacToe::board() const{
+const Board TicTacToe::board() const{
     return b;
 }
 
-Player& TicTacToe::winner() const{
+const Player& TicTacToe::winner() const{
     b = '.';
     return *won;
 }
@@ -116,6 +118,7 @@ void TicTacToe::makingMove(char c, Player& xp, Player& op){
         Coordinate place;
         c == 'X' ? place = xp.play(b) : place = op.play(b);
         if (b[place] != '.') throw string("Illegal Player!");
+
         b[place] = c;
         // if(isWin(c)) c == 'X' ? won = &xp : won = &op;
     }

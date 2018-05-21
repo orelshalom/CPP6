@@ -13,6 +13,6 @@ class Player {
     virtual const Coordinate play(const Board& board) { return {0,0}; }
     
     char getChar() const;
-    void setChar(char);
+    // void setChar(char);
 
 };
