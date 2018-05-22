@@ -15,6 +15,7 @@ class TicTacToe {
         size = num;
         b = temp;
     }
+    ~TicTacToe();
 
     void play(Player& xp, Player& op);
     const Board board() const;

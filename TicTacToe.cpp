@@ -2,6 +2,11 @@
 #include "TicTacToe.h"
 using namespace std;
 
+TicTacToe::~TicTacToe(){
+    delete[] &b;
+    delete[] won;
+}
+
 void TicTacToe::play(Player& xp, Player& op){
     xp.myChar = 'X';
     op.myChar = 'O';
@@ -9,7 +14,7 @@ void TicTacToe::play(Player& xp, Player& op){
     int count = 0;
     
 	while (count < num){
-        if(won != &op || won != &xp) makingMove(xp.myChar, xp, op);
+        if(won != &op && won != &xp) makingMove(xp.myChar, xp, op);
         if(isWin('X') || won == &xp){
             won = &xp;
             return;
