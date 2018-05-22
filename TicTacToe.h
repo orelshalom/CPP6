@@ -15,16 +15,15 @@ class TicTacToe {
         size = num;
         b = temp;
     }
-    ~TicTacToe();
 
     void play(Player& xp, Player& op);
     const Board board() const;
     const Player& winner() const;
 
 
-    bool goLine(const char) const;
-    bool goColumn(const char) const;
-    bool diagonal(const char) const;
+    bool goLine(char) const;
+    bool goColumn(char) const;
+    bool diagonal(char) const;
     bool isWin(const char) const;
     void makingMove(char, Player& xp, Player& op);
 };
