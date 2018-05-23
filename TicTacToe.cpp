@@ -21,14 +21,14 @@ void TicTacToe::play(Player& xp, Player& op){
                     won = &xp;
                     return;
                 }
+                turn = 2;
             }
             catch (...){
                 won = &op;
                 return;
-            }
-            turn = 2;
-            count++;            
+            }            
         }
+        count++;
         if (turn == 2){
             try {
                 Coordinate place;
@@ -39,14 +39,14 @@ void TicTacToe::play(Player& xp, Player& op){
                     won = &op;
                     return;
                 }
+                turn = 1;
             }
             catch (...){
                 won = &xp;
                 return;
             }
-            turn = 1; 
-            count++;           
         }
+            count++;           
 
         // if(makingMove(xp.myChar, xp, op)) return;
         // count++;
