@@ -25,5 +25,5 @@ class TicTacToe {
     bool goColumn(char) const;
     bool diagonal(char) const;
     bool isWin(const char) const;
-    bool makingMove(char, Player& xp, Player& op);
+    // void makingMove(char, Player& xp, Player& op);
 };
