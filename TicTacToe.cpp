@@ -47,11 +47,6 @@ void TicTacToe::play(Player& xp, Player& op){
             }
             count++;           
         }
-
-        // if(makingMove(xp.myChar, xp, op)) return;
-        // count++;
-        // if(makingMove(op.myChar, xp, op) && count < num) return;        
-        // count++;
 	}
     won = &op;
 }
@@ -142,21 +137,3 @@ bool TicTacToe::isWin(const char c) const {
     }
     return false;
 }
-
-// bool TicTacToe::makingMove(char c, Player& xp, Player& op){
-//     try {
-//         Coordinate place;
-//         c == 'X' ? place = xp.play(b) : place = op.play(b);
-//         if (b[place] != '.') throw string("Illegal Player!");
-//         b[place] = c;
-//         if(isWin(c)){
-//             c == 'X' ? won = &xp : won = &op;
-//             return true;
-//         }
-//         return false;
-//     }
-//     catch (...){
-//         c == 'X' ? won = &op : won = &xp;
-//         return true;
-//     }
-// }
