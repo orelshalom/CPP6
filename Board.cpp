@@ -1,5 +1,6 @@
-#include <iostream>
 #include "Board.h"
+#include <iostream>
+
 using namespace std;
 
 
@@ -27,6 +28,29 @@ ostream& operator<< (ostream& os, const Board& b){
         }
     }
     return os;
+}
+
+istream& operator>> (istream& is, Board& b){
+	string path, line;
+	is >> path;
+	ifstream boardFile(path);
+    uint count = 0;
+    if (boardFile.is_open()){
+        while (getline(boardFile, line)){
+            if(count == 0) b.matrix = new Character * [line.length()];
+            for(uint i = 0; i < line.length(); i++){
+                b.matrix[i] = new Character [line.length()];
+                b.matrix[count][i] = line[i];
+                cout << b.matrix[count][i] ;
+            }
+            cout << endl;
+            count++;
+        }
+        boardFile.close();
+    }
+    else cout << "Unable to open file"; 
+    
+	return is;
 }
 
 Character& Board::operator[] (Coordinate coor) const{
