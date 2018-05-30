@@ -3,6 +3,10 @@
 
 using namespace std;
 
+Board::Board(){
+    boardSize = 0;
+    matrix = NULL;
+}
 
 Board::Board (const Board& b){
     boardSize = b.boardSize;
@@ -31,25 +35,21 @@ ostream& operator<< (ostream& os, const Board& b){
 }
 
 istream& operator>> (istream& is, Board& b){
-	string path, line;
-	is >> path;
-	ifstream boardFile(path);
+	string line;
+	is >> line;
     uint count = 0;
-    if (boardFile.is_open()){
-        while (getline(boardFile, line)){
-            if(count == 0) b.matrix = new Character * [line.length()];
-            for(uint i = 0; i < line.length(); i++){
-                b.matrix[i] = new Character [line.length()];
-                b.matrix[count][i] = line[i];
-                cout << b.matrix[count][i] ;
-            }
-            cout << endl;
-            count++;
-        }
-        boardFile.close();
-    }
-    else cout << "Unable to open file"; 
     
+    while (count < line.length()){
+        if(count ==  0){
+            Board temp{(uint)line.length()};
+            b = temp;
+        }
+        for(uint i = 0; i < line.length(); i++){
+            b.matrix[count][i] = line[i];
+        }
+        count++;
+    	is >> line;
+    }
 	return is;
 }
 
@@ -82,4 +82,40 @@ void Board::operator= (char c) const{
 
 const uint Board::size() const{
     return boardSize;
+}
+
+string Board::draw(int n){
+    num++;
+    while(true){
+        ifstream f("d"+to_string(num)+".ppm");
+        if(!f.good()) break;
+        else num++;
+    }
+    
+    string intstr = to_string(num);
+    string name = "d" + intstr + ".ppm";
+    ofstream imageFile(name, ios::out | ios::binary);
+    imageFile << "P6" << endl << n <<" " << n << endl << 255 << endl;
+    RGB image[n*n];
+    int cell = (n-(boardSize+1))/boardSize;
+    
+    for (int j = 0; j < n; ++j)  {  // row
+        for (int i = 0; i < n; ++i) { // column
+            image[n*j+i].red = (255);
+            image[n*j+i].green = (255);
+            image[n*j+i].blue = (255);
+            if((i%cell == 0 || j%cell == 0)){
+                image[n*j+i].red = (0);
+                image[n*j+i].green = (0);
+                image[n*j+i].blue = (0);
+            }
+        }
+    }
+    // image[0].red = 0;
+    // image[0].blue = 0;
+    // image[0].green = 0;
+  
+    imageFile.write(reinterpret_cast<char*>(&image), 3*n*n);
+    imageFile.close();
+    return name;
 }
