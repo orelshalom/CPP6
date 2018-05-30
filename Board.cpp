@@ -112,6 +112,7 @@ string Board::draw(int n){
         }
     }
 
+    int radius = (cell/2)-10;
     for(uint i = 0; i < boardSize; ++i){  
         for(uint j = 0; j < boardSize; ++j){ 
             if(matrix[i][j] == 'X'){
@@ -131,6 +132,22 @@ string Board::draw(int n){
                     image[n*k+m].red = (0);
                     image[n*k+m].green = (0);
                     image[n*k+m].blue = (0);
+                }
+            }
+            if(matrix[i][j] == 'O'){
+                int row = i*cell+1;
+                int col = j*cell+1;
+                int Xcenter = row+(cell/2);
+                int Ycenter = col+(cell/2);
+                for(int m = row; m < cell+row; ++m){  
+                    for(int t = col; t < cell+col; ++t){
+                        int dis = sqrt(pow(m-Xcenter,2) + pow(t-Ycenter,2));
+                        if(dis == radius){
+                            image[n*m+t].red = (0);
+                            image[n*m+t].green = (0);
+                            image[n*m+t].blue = (0); 
+                        }
+                    }
                 }
             }
         }

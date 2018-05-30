@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include <math.h>
 #include "Character.h"
 #include "IllegalCharException.h"
 #include "IllegalCoordinateException.h"
