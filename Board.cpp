@@ -118,7 +118,7 @@ string Board::draw(int n){
                 int row = i*cell+1;
                 int col = j*cell+1;
                 int m = col;
-                for(int k = row; k < i*cell; ++k){
+                for(int k = row; k < row+cell; ++k){
                     m++;
                     image[n*k+m].red = (0);
                     image[n*k+m].green = (0);
