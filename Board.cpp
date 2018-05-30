@@ -99,8 +99,8 @@ string Board::draw(int n){
     RGB image[n*n];
     int cell = (n-(boardSize+1))/boardSize;
     
-    for (int j = 0; j < n; ++j)  {  // row
-        for (int i = 0; i < n; ++i) { // column
+    for (int j = 0; j < n; ++j)  {  
+        for (int i = 0; i < n; ++i) { 
             image[n*j+i].red = (255);
             image[n*j+i].green = (255);
             image[n*j+i].blue = (255);
@@ -111,9 +111,30 @@ string Board::draw(int n){
             }
         }
     }
-    image[0].red = 0;
-    image[0].blue = 0;
-    image[0].green = 0;
+
+    for(uint i = 0; i < boardSize; ++i){  
+        for(uint j = 0; j < boardSize; ++j){ 
+            if(matrix[i][j] == 'X'){
+                int row = i*cell+1;
+                int col = j*cell+1;
+                int m = col;
+                for(int k = row; k < cell; ++k){
+                    m++;
+                    image[n*k+m].red = (0);
+                    image[n*k+m].green = (0);
+                    image[n*k+m].blue = (0);
+                }
+                row += cell;
+                m = col;
+                for(int k = row; k > cell; --k){
+                    m++;
+                    image[n*k+m].red = (0);
+                    image[n*k+m].green = (0);
+                    image[n*k+m].blue = (0);
+                }
+            }
+        }
+    }
   
     imageFile.write(reinterpret_cast<char*>(&image), 3*n*n);
     imageFile.close();
