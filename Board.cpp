@@ -124,14 +124,14 @@ string Board::draw(int n){
                     image[n*k+m].green = (0);
                     image[n*k+m].blue = (0);
                 }
-                // row += cell;
-                // m = col;
-                // for(int k = row; k > cell; --k){
-                //     m++;
-                //     image[n*k+m].red = (0);
-                //     image[n*k+m].green = (0);
-                //     image[n*k+m].blue = (0);
-                // }
+                row += cell;
+                m = col;
+                for(int k = row; k > row-cell; --k){
+                    m++;
+                    image[n*k+m].red = (0);
+                    image[n*k+m].green = (0);
+                    image[n*k+m].blue = (0);
+                }
             }
         }
     }
