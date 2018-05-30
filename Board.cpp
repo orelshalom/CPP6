@@ -112,7 +112,7 @@ string Board::draw(int n){
         }
     }
 
-    int radius = (cell/2)-10;
+    int radius = (cell/2)-5;
     for(uint i = 0; i < boardSize; ++i){  
         for(uint j = 0; j < boardSize; ++j){ 
             if(matrix[i][j] == 'X'){
