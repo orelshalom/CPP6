@@ -101,9 +101,9 @@ string Board::draw(int n){
     
     for (int j = 0; j < n; ++j)  {  
         for (int i = 0; i < n; ++i) { 
-            image[n*j+i].red = (255);
-            image[n*j+i].green = (255);
-            image[n*j+i].blue = (255);
+            image[n*j+i].red = (217);
+            image[n*j+i].green = (147);
+            image[n*j+i].blue = (142);
             if((i%cell == 0 || j%cell == 0)){
                 image[n*j+i].red = (0);
                 image[n*j+i].green = (0);
