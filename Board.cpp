@@ -111,9 +111,9 @@ string Board::draw(int n){
             }
         }
     }
-    // image[0].red = 0;
-    // image[0].blue = 0;
-    // image[0].green = 0;
+    image[0].red = 0;
+    image[0].blue = 0;
+    image[0].green = 0;
   
     imageFile.write(reinterpret_cast<char*>(&image), 3*n*n);
     imageFile.close();
